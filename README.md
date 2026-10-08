@@ -14,4 +14,4 @@ An interactive web-based build planner for **Violence District**, designed to he
 - **GitHub Pages** for continuous hosting & deployment
 
 ## Live Demo
-Check out the live application here: [Violence District Build Planner](https://rodrigoecabrita-bot.github.io/violence-district-planner/)
+Check out the live application here: [Violence District Build Planner]([https://rodrigoecabrita-bot.github.io/violence-district-planner/](https://rodrigoaecabrita-bot.github.io/Violence_District_Build_Planner/))
