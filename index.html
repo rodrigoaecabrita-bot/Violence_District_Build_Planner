@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Violence District - Build Planner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR DE TOPO -->
+  <header class="navbar">
+    <div class="logo" onclick="showView('home-view')">
+      <h1>VIOLENCE DISTRICT</h1>
+      <span>BUILD PLANNER</span>
+    </div>
+    <div class="nav-controls">
+      <button id="btn-toggle-role" class="switch-role-btn" onclick="toggleRole()"></button>
+    </div>
+  </header>
+
+  
+
+  <!-- 1. VISTA INICIAL (HOME - 2 BOTÕES GRANDES) -->
+  <main id="home-view" class="view-section active">
+    <div class="home-hero">
+      <h2>Choose a Role</h2>
+      <div class="role-cards-container">
+        
+        <!-- Cartão Survivor -->
+        <div class="role-card survivor-card" onclick="openRoleView('survivor')">
+          <div class="card-icon">
+            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#4a90e2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3>SURVIVOR BUILDS</h3>
+          <p>Explore or create combinations for Survivors</p>
+        </div>
+
+        <!-- Cartão Killer -->
+        <div class="role-card killer-card" onclick="openRoleView('killer')">
+          <div class="card-icon">
+            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#ff3333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14.5 17.5L3 6V3h3l11.5 11.5"/>
+              <path d="M13 19l6-6"/>
+              <path d="M16 16l4 4"/>
+              <path d="M19 21l2-2"/>
+            </svg>
+          </div>
+          <h3>KILLER BUILDS</h3>
+          <p>Explore or create strategies for Killers</p>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- 2. VISTA DE LISTA DE BUILDS (EXPLORAR) -->
+  <main id="list-view" class="view-section">
+    <div class="list-header">
+      <h2 id="list-title">Survivor Builds</h2>
+      <button class="create-build-btn" onclick="showView('editor-view')">+ Create New Build</button>
+    </div>
+
+    <div class="list-layout">
+      <!-- Painel de Filtros -->
+      <aside class="sidebar-filters">
+        <h3>Filters</h3>
+        <input type="text" id="search-builds" placeholder="Search builds..." onkeyup="filterBuildsList()">
+      </aside>
+
+      <!-- Grelha de Cartões de Builds Registadas -->
+      <section class="builds-grid" id="builds-grid-container">
+        <!-- As builds guardadas vão aparecer aqui -->
+      </section>
+    </div>
+  </main>
+
+  <!-- 3. VISTA DO EDITOR / CRIADOR DE BUILDS -->
+  <main id="editor-view" class="view-section">
+    <div class="editor-header" style="display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 20px;">
+      <button class="back-btn" onclick="showView('list-view')">← Return to Builds</button>
+
+      <!-- UNICA CAIXA DE NOME (NO CABEÇALHO) -->
+      <div style="flex-grow: 1; max-width: 350px;">
+        <input type="text" id="build-name-input" placeholder="Enter build name..." style="width: 100%; padding: 10px 14px; background: #141414; border: 1px solid #ff3333; border-radius: 6px; color: #fff; font-size: 1em; outline: none;">
+      </div>
+    </div>
+
+    <div class="builder-container" id="builder-container">
+      <!-- O JS vai injetar apenas os slots do Killer/Item + Perks -->
+    </div>
+
+    <!-- BOTÃO PARA GUARDAR A BUILD -->
+    <div style="margin: 20px 0; text-align: center;">
+      <button onclick="saveCurrentBuild()" class="save-btn">SAVE BUILD</button>
+    </div>
+
+    <!-- Painel de Detalhes Inferior -->
+    <div class="details-panel" id="details-panel">
+      <!-- O JS carrega aqui o resumo da build -->
+    </div>
+  </main>
+
+  <!-- MODAL DE SELEÇÃO -->
+  <div class="modal" id="selection-modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal()">&times;</span>
+      <h3 id="modal-title">Choose an Item</h3>
+      <input type="text" id="search-input" placeholder="Search..." onkeyup="filterModalItems()">
+      <div id="modal-items-grid"></div>
+    </div>
+  </div>
+
+  <!-- Tooltip flutuante no estilo Steam -->
+  <div id="item-tooltip" class="item-tooltip hidden">
+    <div class="tooltip-title" id="tooltip-title"></div>
+    <div class="tooltip-desc" id="tooltip-desc"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
